@@ -428,7 +428,6 @@ def one_epoch(net, optimizer, criterion, loader, group):
 # ### Entrenamiento
 #%%
 
-EPOCHS = 1
 best_vloss = 1_000_000.
 
 
