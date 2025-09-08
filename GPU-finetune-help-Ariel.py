@@ -294,7 +294,7 @@ optimizer = torch.optim.AdamW(
     betas= (0.9, 0.98)
     )
 
-evolution_paths = [PATH / f'results_{ver}.csv' for ver in versions]
+evolution_paths = [PATH / 'finetune_results' / f'results_{ver}.csv' for ver in versions]
 
 net_crossval = [net for k in range(len(versions))]
 optim_crossval = [optimizer for k in range(len(versions))]
@@ -477,7 +477,7 @@ for k_fold, ver in enumerate(versions):
         
 
     if epoch - best_epoch > 5:
-        torch.save(checkpoint,  PATH / f'best_model_fine_{ver}.pt')
+        torch.save(checkpoint,  PATH / 'finetune_results' / f'best_model_fine_{ver}.pt')
 
     trainable_state_dict2 = {
             name: param.detach().cpu()
@@ -496,7 +496,7 @@ for k_fold, ver in enumerate(versions):
 
 
 
-    torch.save(checkpoint2,  PATH / f'last_model_fine_{ver}.pt')
+    torch.save(checkpoint2,  PATH / 'finetune_results' / f'last_model_fine_{ver}.pt')
 
     end_time = time.time()
     print(f'Training time: {end_time - start_time} seconds')
